@@ -1,0 +1,30 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 10em;
+    position: relative;
+}
+
+.example-card {
+    display: block;
+    width: 600px;
+    text-align: center;
+    height: 10em;
+    position: relative;
+    top: 30%;
+    left: 30%;
+}
+
+.table-card {
+    display: block;
+    width: 95%;
+    text-align: center;
+    height: auto;
+    margin: auto;
+    margin-top: 20px;
+}
+
+h3 {
+    text-align: center
+}

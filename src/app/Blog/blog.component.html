@@ -1,0 +1,74 @@
+<mat-hint matTooltip="Info about the action"
+> Add Post </mat-hint>
+<button mat-fab color="accent" class="fab" [routerLink] = "['/addBlog']">
+
+  <mat-icon aria-label="Example icon-button with a heart icon">add </mat-icon>
+
+</button>
+
+
+<div *ngIf=show>
+    <mat-spinner style="margin:0 auto; display: block " mode="indeterminate"></mat-spinner>
+</div>
+<div class="row" *ngIf="postList?.length > 0 else empty">
+    <h3>
+        List of Blogs </h3>
+
+
+    <mat-card class="table-card">
+
+    
+        <mat-table #table [dataSource]="dataSource">
+            <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- Serial No. -->
+
+
+            <ng-container matColumnDef="S.no.">
+                <mat-header-cell *matHeaderCellDef> S.No. </mat-header-cell>
+                <mat-cell *matCellDef="let element let i=index">{{i+1}} </mat-cell>
+            </ng-container>
+
+            <!-- Channel Name Column -->
+
+            <ng-container matColumnDef="channelName">
+                <mat-header-cell *matHeaderCellDef>  Title </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                   {{element.article_title}}
+                </mat-cell>
+            </ng-container>
+
+            <!-- Channel Id Column -->
+
+            <ng-container matColumnDef="channelId">
+                <mat-header-cell *matHeaderCellDef> Content </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                 <p style = 'text-overflow: ellipsis'>   {{element.article_content | contentLimit}} </p>
+
+                </mat-cell>
+            </ng-container>
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="Action">
+                <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <mat-icon  (click)="update(element  )" style = 'cursor : pointer ; color : #FF3F81'>edit</mat-icon>
+                    <mat-icon (click)="delete(element.post_ID)" style = 'cursor : pointer; color : #FF3F81 ' >delete</mat-icon>
+                </mat-cell>
+
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">{{row}}</mat-row>
+
+        </mat-table>
+    </mat-card>
+
+</div>
+
+<ng-template #empty>
+    <h3> Please Add New Blog  </h3>
+    <img src="../../assets/sad.png" width="200px" height="200px" style="margin : auto ; display : block " />
+
+</ng-template>

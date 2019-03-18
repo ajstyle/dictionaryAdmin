@@ -1,0 +1,40 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  .my-drop-zone { border: dotted 3px lightgray; }
+  .nv-file-over { border: dotted 3px red; } 
+  .another-file-over-class { border: dotted 3px green; }    
+
+  html, body { height: 100%; }
+
+  .container {
+    height: 30%;
+    position: inherit;
+    width: 100%;
+
+  }
+
+  #watermark
+{
+  position: relative;
+  top: 35%;
+  left: 35%;
+  opacity: 0.5;
+}
+
+.upload
+{
+  position: relative;
+  top: 35%;
+  left: 35%;
+}
+.heading{
+  margin-top: 10px
+}
