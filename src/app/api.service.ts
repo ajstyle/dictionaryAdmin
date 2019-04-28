@@ -7,8 +7,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class ApiService {
 
-  //localurl = 'https://dictionarybackend.herokuapp.com/api' ; 
-  localurl = 'http://localhost:8000/api' ;
+  localurl = 'https://dictionarybackend.herokuapp.com/api' ; 
+  //localurl = 'http://localhost:8000/api' ;
   constructor(public http: HttpClient ) { }
   private messageSource = new BehaviorSubject('');
   setData(data) {

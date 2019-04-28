@@ -9,7 +9,7 @@ import {Router} from '@angular/router' ;
 import { MatSnackBar } from '@angular/material';
 import { ToolbarService, LinkService, ImageService, HtmlEditorService, TableService } from '@syncfusion/ej2-angular-richtexteditor';
 import { NgProgress } from 'ngx-progressbar';
-const URL = 'http://localhost:8000/api/upload' ; 
+const URL = 'https://dictionarybackend.herokuapp.com/api/upload' ; 
 
 @Component({
   selector: 'app-add-dictionary',
@@ -58,13 +58,13 @@ audioName : string ;
           if(this.model.imageName){
             const imageExt =  this.model.imageName.split('.').pop().toLowerCase()  ;   
         if(imageExt == 'jpeg' || imageExt == 'jpg' || imageExt == 'png' || imageExt=='gif' || imageExt == 'tiff' || imageExt == 'psd' ) {
-          this.imgURL = `http://localhost:8000/images/${this.model.imageName}` ;
+          this.imgURL = `https://dictionarybackend.herokuapp.com/images/${this.model.imageName}` ;
          }
           }
           if(this.model.audioName){
             const audioExt =  this.model.audioName.split('.').pop().toLowerCase()  ; 
             if(audioExt == 'mp3' || audioExt == 'wav' || audioExt=='aif' || audioExt == 'mid') {
-              this.audioUrl = `http://localhost:8000/images/${this.model.audioName}` ;
+              this.audioUrl = `https://dictionarybackend.herokuapp.com/images/${this.model.audioName}` ;
               console.log('===audioUrl' , this.audioUrl);
             }
           }
