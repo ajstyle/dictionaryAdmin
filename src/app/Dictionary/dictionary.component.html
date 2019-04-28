@@ -10,7 +10,7 @@
 <div *ngIf=show>
     <mat-spinner style="margin:0 auto; display: block " mode="indeterminate"></mat-spinner>
 </div>
-<div class="row" *ngIf="showImage ;  else empty">
+<div class="row" *ngIf="wordList?.length > 0 else empty">
     <h3>
         List of Words </h3>
 

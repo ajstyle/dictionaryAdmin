@@ -25,7 +25,6 @@ export class DictionaryComponent implements OnInit {
   show = false;
   url = '';
   uploadData = new FormData();
-  showImage = false ; 
 
   /* ----------------------- Table Coloumns ---------------------*/
 
@@ -41,9 +40,7 @@ export class DictionaryComponent implements OnInit {
     this.show = true;
     this.apiService.getWords().subscribe((wordList) => {
       
-      if(this.wordList.length == 0 ) {
-        this.showImage = true ; 
-      }
+     
       this.wordList = wordList;
       console.log(this.wordList) ;
       this.dataSource = new MatTableDataSource<any>(this.wordList);
