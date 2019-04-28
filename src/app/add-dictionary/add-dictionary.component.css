@@ -21,6 +21,14 @@
 
   }
 
+  .pdfview {
+    position: relative;
+    overflow: hidden;
+    max-width: 495px;
+    max-height: 500px;
+
+  }
+
   #watermark
 {
   position: relative;

@@ -7,9 +7,10 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class ApiService {
 
+  //localurl = 'https://dictionarybackend.herokuapp.com/api' ; 
+  localurl = 'http://localhost:8000/api' ;
   constructor(public http: HttpClient ) { }
   private messageSource = new BehaviorSubject('');
-
   setData(data) {
     this.messageSource.next(data) ;
   }
@@ -18,27 +19,39 @@ export class ApiService {
     return this.messageSource ;
   }
 
-  updatePost(data) {
-    console.log(data) ;
-    return this.http.put('http://localhost/blog/api/updatePosts' , data );
+  updateWord(data) {
+    console.log(data.id) ;
+    return this.http.put(`${this.localurl}/dictionary/${data.id}` , data );
+  }
+
+  deleteImage(id) {
+    return this.http.put(`${this.localurl}/deleteImage/${id}` , id );
+
+  }
+  deleteAudio(id) {
+    return this.http.put(`${this.localurl}/deleteAudio/${id}` , id );
 
   }
 
-   getPosts() {
-     return this.http.get('http://localhost/blog/api/posts');
+   getWords() {
+     return this.http.get(`${this.localurl}/dictionary`);
    }
 
-   addPost(data, options) {
+   addWord(data, options) {
    console.log(options) ;
-    return this.http.post('http://localhost/blog/api/addNewPost' , data);
+    return this.http.post(`${this.localurl}/dictionary` , data);
   }
 
 
    delete(id) {
-     return this.http.delete(`http://localhost/blog/api/deletePosts/${id}` ) ;
+     return this.http.delete(`${this.localurl}/dictionary/${id}` ) ;
    }
    postImage(url) {
-    return this.http.post(`http://localhost/blog/api/uploadImg/`, url) ;
+    return this.http.post(`${this.localurl}/uploadImage`, url) ;
+   }
+   postAudio(url) {
+    return this.http.post(`${this.localurl}/uploadAudio`, url) ;
+
    }
 }
 

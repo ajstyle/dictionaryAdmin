@@ -1,0 +1,74 @@
+<form #blogForm="ngForm"  name = 'BlogForm' enctype="multipart/form-data">
+<div class="example-form" class = 'center'>
+
+  <div style =  'margin-bottom: 50px;' *ngIf = !edit>
+    <h2>Add New Word</h2>     
+    
+</div>
+<div style =  'margin-bottom: 50px;' *ngIf = edit >
+  <h2>Update New Word</h2>
+  
+</div>
+   
+
+     <mat-form-field class="example-full-width">
+       <input placeholder = 'Enter Word' type="text" matInput class="form-control" id="" name = 'word' [(ngModel)]="model.word" #word="ngModel" autocomplete="off" required>
+     </mat-form-field>
+   
+     <mat-form-field class="example-full-width">
+       <textarea  rows="5" cols="50" type="text"  placeholder = 'Word Meaning' matInput class="form-control"  name = 'wordMeaning'  [(ngModel)]="model.wordMeaning" autocomplete="off" required></textarea>
+     </mat-form-field>
+ 
+
+     <img [src]="imgURL" height="100" *ngIf="imgURL">
+     <mat-icon *ngIf="imgURL&&edit" style = 'bottom: 86px; position: relative; right: 19px;cursor : pointer'  (click) = 'deleteImage()' >close</mat-icon>
+     <mat-icon *ngIf="imgURL&&!edit" style = 'bottom: 86px; position: relative; right: 19px;cursor : pointer'  (click) = 'removeImage()' >close</mat-icon>
+
+     <audio controls  *ngIf="audioUrl">
+      <source [src]="audioUrl" >
+       </audio>
+       <mat-icon *ngIf="uploadAudio&&!edit" style = ' bottom: 35px;
+       position: relative;
+       right: 30px; cursor : pointer'  (click) = 'removeAudio()' >close</mat-icon>
+
+<mat-icon *ngIf="audioUrl&&edit" style = ' bottom: 35px;
+position: relative;
+right: 30px;cursor : pointer '  (click) = 'deleteAudio()' >close</mat-icon>
+     <div class = 'container well my-drop-zone'>
+     <div ng2FileDrop
+     [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+     (fileOver)="fileOverBase($event)"
+     [uploader]="uploader"
+     (change)="preview(file.files)"
+     (onFileDrop)="onFileSelected($event)"
+     style = 'height : 200px'>
+      <p id = 'watermark'> Drop Image/Audio for Upload </p>
+       <div class = 'upload '>
+          <input #file type="file" name = 'file' ng2FileSelect [uploader]="uploader"  multiple (change)="preview(file.files)"  (onFileSelected)="onFileSelected($event)" />
+        </div>
+   </div>
+
+</div>
+
+
+<h3> {{text}} </h3>
+    
+            <ng-progress [positionUsing]="'marginLeft'" [minimum]="0.15" [maximum]="1"
+            [speed]="200" [showSpinner]="false" [direction]="'leftToRightIncreased'"
+            [color]="'red'" [trickleSpeed]="250" [thick]="false" [ease]="'linear'"
+></ng-progress>
+
+
+
+<div style = 'margin-top : 30px ; position : relative ; left : 110px ' class = 'center'>
+   <div *ngIf='edit'>
+  <button (click) = 'update()'  [disabled] = 'disable' class="btn btn-primary" >Update</button>
+    </div>
+    <div *ngIf='!edit'>
+      <button (click) = 'addBlog()'  class="btn btn-primary" >Submit</button>
+        </div>  
+</div>
+</div>
+
+</form>
+

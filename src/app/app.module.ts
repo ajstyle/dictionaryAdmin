@@ -6,26 +6,29 @@ import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor'
 import {MaterialDesignModule} from './material-design/material-design.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { BlogComponent } from './Blog/blog.component';
+import { DictionaryComponent } from './Dictionary/dictionary.component';
 
 import { ApiService } from './api.service';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddBlogComponent } from './add-blog/add-blog.component';
+import { AddBlogComponent } from './add-dictionary/add-dictionary.component';
 import {ToastModule} from 'ng2-toastr/ng2-toastr' ;
 import { RouterModule, Routes } from '@angular/router';
 import {FileUploadModule} from 'ng2-file-upload';
 import {ContentPipe} from './content-pipe';
+import { NgProgressModule } from 'ngx-progressbar';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 const appRoutes: Routes = [
-  {path : '' , component : BlogComponent },
-  {path : 'addBlog' , component : AddBlogComponent },
-  {path : 'editBlog' , component : AddBlogComponent }
+  {path : '' , component : DictionaryComponent },
+  {path : 'addDictionary' , component : AddBlogComponent },
+  {path : 'editDictionary' , component : AddBlogComponent }
 ] ;
 
 @NgModule({
   declarations: [
     AppComponent,
-    BlogComponent,
+    DictionaryComponent,
     AddBlogComponent,
     ContentPipe
   ],
@@ -34,7 +37,7 @@ const appRoutes: Routes = [
       appRoutes,
     ),
     RichTextEditorAllModule,
-
+    NgProgressModule,
     BrowserModule,
     MaterialDesignModule,
     HttpClientModule,
@@ -42,7 +45,8 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     ToastModule.forRoot(),
-    FileUploadModule
+    FileUploadModule,
+    PdfViewerModule
 
 
   ],

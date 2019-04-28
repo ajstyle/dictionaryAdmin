@@ -5,19 +5,19 @@ import { ApiService } from '../api.service';
 import { MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { AddBlogComponent } from '../add-blog/add-blog.component';
+import { AddBlogComponent } from '../add-dictionary/add-dictionary.component';
 import { MatSnackBar } from '@angular/material';
 import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
-  selector: 'app-blog',
-  templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.css'],
+  selector: 'app-dictionary',
+  templateUrl: './dictionary.component.html',
+  styleUrls: ['./dictionary.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class BlogComponent implements OnInit {
+export class DictionaryComponent implements OnInit {
 
-  postList;
+  wordList : any = [];  
   dataSource;
   data;
   value;
@@ -25,7 +25,7 @@ export class BlogComponent implements OnInit {
   show = false;
   url = '';
   uploadData = new FormData();
-
+  showImage = false ; 
 
   /* ----------------------- Table Coloumns ---------------------*/
 
@@ -39,9 +39,14 @@ export class BlogComponent implements OnInit {
 
   ngOnInit() {
     this.show = true;
-    this.apiService.getPosts().subscribe((postList) => {
-      this.postList = postList;
-      this.dataSource = new MatTableDataSource<any>(this.postList);
+    this.apiService.getWords().subscribe((wordList) => {
+      
+      if(this.wordList.length == 0 ) {
+        this.showImage = true ; 
+      }
+      this.wordList = wordList;
+      console.log(this.wordList) ;
+      this.dataSource = new MatTableDataSource<any>(this.wordList);
       this.show = false;
     }, (err) => { this.show = false; });
 
@@ -52,7 +57,7 @@ export class BlogComponent implements OnInit {
   update(element) {
     console.log(element);
     this.apiService.setData(element);
-    this.router.navigate(['editBlog']);
+    this.router.navigate(['editDictionary']);
   }
 
 
@@ -61,11 +66,11 @@ export class BlogComponent implements OnInit {
     console.log(id);
     this.show = true;
     this.apiService.delete(id).subscribe(() => {
-      this.postList = this.postList.filter(post => post.post_ID !== id);
-      console.log(this.postList);
-      this.dataSource = new MatTableDataSource<any>(this.postList);
+      this.wordList = this.wordList.filter(word => word._id !== id);
+      console.log(this.wordList);
+      this.dataSource = new MatTableDataSource<any>(this.wordList);
       this.show = false;
-      this.snackBar.open('Channel Delete', '', {
+      this.snackBar.open('Word Delete', '', {
         duration: 2000
       });
     });

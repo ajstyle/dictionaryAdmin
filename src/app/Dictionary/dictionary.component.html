@@ -1,6 +1,6 @@
 <mat-hint matTooltip="Info about the action"
-> Add Post </mat-hint>
-<button mat-fab color="accent" class="fab" [routerLink] = "['/addBlog']">
+> Add New Word </mat-hint>
+<button mat-fab style = '  background: #8883b4;' class="fab" [routerLink] = "['/addDictionary']">
 
   <mat-icon aria-label="Example icon-button with a heart icon">add </mat-icon>
 
@@ -10,9 +10,9 @@
 <div *ngIf=show>
     <mat-spinner style="margin:0 auto; display: block " mode="indeterminate"></mat-spinner>
 </div>
-<div class="row" *ngIf="postList?.length > 0 else empty">
+<div class="row" *ngIf="showImage ;  else empty">
     <h3>
-        List of Blogs </h3>
+        List of Words </h3>
 
 
     <mat-card class="table-card">
@@ -33,18 +33,18 @@
             <!-- Channel Name Column -->
 
             <ng-container matColumnDef="channelName">
-                <mat-header-cell *matHeaderCellDef>  Title </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>  Word </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                   {{element.article_title}}
+                   {{element.word}}
                 </mat-cell>
             </ng-container>
 
             <!-- Channel Id Column -->
 
             <ng-container matColumnDef="channelId">
-                <mat-header-cell *matHeaderCellDef> Content </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> Word Meaning </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                 <p style = 'text-overflow: ellipsis'>   {{element.article_content | contentLimit}} </p>
+                 <p style = 'text-overflow: ellipsis'>   {{element.wordMeaning }} </p>
 
                 </mat-cell>
             </ng-container>
@@ -53,8 +53,8 @@
             <ng-container matColumnDef="Action">
                 <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                    <mat-icon  (click)="update(element  )" style = 'cursor : pointer ; color : #FF3F81'>edit</mat-icon>
-                    <mat-icon (click)="delete(element.post_ID)" style = 'cursor : pointer; color : #FF3F81 ' >delete</mat-icon>
+                    <mat-icon  (click)="update(element)" style = 'cursor : pointer ; color : #8883b4'>edit</mat-icon>
+                    <mat-icon (click)="delete(element._id)" style = 'cursor : pointer; color : #8883b4 ' >delete</mat-icon>
                 </mat-cell>
 
             </ng-container>
@@ -68,7 +68,7 @@
 </div>
 
 <ng-template #empty>
-    <h3> Please Add New Blog  </h3>
+    <h3> Please Add  Word  </h3>
     <img src="../../assets/sad.png" width="200px" height="200px" style="margin : auto ; display : block " />
 
 </ng-template>
