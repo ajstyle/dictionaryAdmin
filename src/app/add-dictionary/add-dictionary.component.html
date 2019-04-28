@@ -44,7 +44,7 @@ right: 30px;cursor : pointer '  (click) = 'deleteAudio()' >close</mat-icon>
      style = 'height : 200px'>
       <p id = 'watermark'> Drop Image/Audio for Upload </p>
        <div class = 'upload '>
-          <input #file type="file" name = 'file' ng2FileSelect [uploader]="uploader"  multiple (change)="preview(file.files)"  (onFileSelected)="onFileSelected($event)" />
+          <input #file type="file" accept="image/*, audio/*" name = 'file' ng2FileSelect [uploader]="uploader"  multiple (change)="preview(file.files)"  (onFileSelected)="onFileSelected($event)" />
         </div>
    </div>
 
