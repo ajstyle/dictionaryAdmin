@@ -194,10 +194,10 @@ audioName : string ;
         duration: 2000
       });
       this.text = '' ;
-      this.snackBar.open('Data Uploaded', 'Done', {
+      this.snackBar.open('Post Updated', 'Done', {
         duration: 2000
       });
-      this.router.navigate(['/']);
+      this.router.navigate(['dictionary']);
     });
   }) ;
 }) ;
@@ -259,10 +259,10 @@ audioName : string ;
    });
       this.text = '' ;
 
-      this.snackBar.open('Data Uploaded', 'Done', {
+      this.snackBar.open('Word Updated', 'Done', {
         duration: 2000
       });
-      this.router.navigate(['/']);
+      this.router.navigate(['dictionary']);
     });
   }) ;
 }) ;
