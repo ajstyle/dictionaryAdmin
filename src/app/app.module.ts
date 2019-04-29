@@ -18,11 +18,13 @@ import {FileUploadModule} from 'ng2-file-upload';
 import {ContentPipe} from './content-pipe';
 import { NgProgressModule } from 'ngx-progressbar';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-
+import { LoginComponent } from './login/login.component';
 const appRoutes: Routes = [
-  {path : '' , component : DictionaryComponent },
+  {path : '' , component : LoginComponent },
+  {path : 'dictionary' , component : DictionaryComponent },
   {path : 'addDictionary' , component : AddBlogComponent },
   {path : 'editDictionary' , component : AddBlogComponent }
+
 ] ;
 
 @NgModule({
@@ -30,7 +32,8 @@ const appRoutes: Routes = [
     AppComponent,
     DictionaryComponent,
     AddBlogComponent,
-    ContentPipe
+    ContentPipe,
+    LoginComponent
   ],
   imports: [
     RouterModule.forRoot(

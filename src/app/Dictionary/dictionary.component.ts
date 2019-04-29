@@ -1,8 +1,8 @@
 
-import { Component, OnInit, ViewEncapsulation, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewContainerRef , ViewChild , AfterViewInit} from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, NgForm, Validators, FormControl } from '@angular/forms';
 import { ApiService } from '../api.service';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource , MatPaginator} from '@angular/material';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AddBlogComponent } from '../add-dictionary/add-dictionary.component';
@@ -15,16 +15,18 @@ import { ErrorStateMatcher } from '@angular/material/core';
   styleUrls: ['./dictionary.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class DictionaryComponent implements OnInit {
+export class DictionaryComponent implements OnInit , AfterViewInit{
 
   wordList : any = [];  
-  dataSource;
+  dataSource: MatTableDataSource<any>;
   data;
   value;
   form;
   show = false;
   url = '';
   uploadData = new FormData();
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   /* ----------------------- Table Coloumns ---------------------*/
 
@@ -39,16 +41,23 @@ export class DictionaryComponent implements OnInit {
   ngOnInit() {
     this.show = true;
     this.apiService.getWords().subscribe((wordList) => {
-      
-     
       this.wordList = wordList;
-      console.log(this.wordList) ;
-      this.dataSource = new MatTableDataSource<any>(this.wordList);
+      this.dataSource = new MatTableDataSource(this.wordList);
+          this.dataSource.paginator = this.paginator;
+
       this.show = false;
     }, (err) => { this.show = false; });
 
   }
+  ngAfterViewInit() {
+  }
 
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
   /************ Update Channel ****************/
 
   update(element) {

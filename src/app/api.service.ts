@@ -6,9 +6,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class ApiService {
-
-  localurl = 'https://dictionarybackend.herokuapp.com/api' ; 
-  //localurl = 'http://localhost:8000/api' ;
+  //localurl = 'http://localhost:8000/api' ; 
+  
+   localurl = 'https://dictionarybackend.herokuapp.com/api' ; 
   constructor(public http: HttpClient ) { }
   private messageSource = new BehaviorSubject('');
   setData(data) {
@@ -33,6 +33,10 @@ export class ApiService {
 
   }
 
+  login(val) {
+    return this.http.post(`${this.localurl}/login` , val );
+
+  }
    getWords() {
      return this.http.get(`${this.localurl}/dictionary`);
    }
